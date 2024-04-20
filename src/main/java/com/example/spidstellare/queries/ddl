@@ -1,0 +1,67 @@
+CREATE DATABASE spid_stellare;
+CREATE TABLE pianeti
+(
+	id INT AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	descrizione VARCHAR(100) NOT NULL,
+	PRIMARY KEY(id)
+);
+CREATE TABLE razze
+(
+	id INT AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	descrizione VARCHAR(100) NOT NULL,
+	PRIMARY KEY (id)
+);
+-- genere -> true -> Maschio
+-- genere -> false -> Femmina
+CREATE TABLE utenti
+(
+	id INT AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	cognome VARCHAR(50) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	psw VARCHAR(255) NOT NULL,
+	id_pianeta INT NOT NULL,
+	id_razza INT NOT NULL,
+	genere bool NOT NULL,
+	dt_nascita DATETIME NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE(email),
+	FOREIGN KEY(id_pianeta) REFERENCES pianeti(id),
+	FOREIGN KEY(id_razza) REFERENCES razze(id)
+);
+
+-- Inserimento dei pianeti
+INSERT INTO pianeti (nome, descrizione)
+VALUES
+    ('Mercurio', 'Il pianeta più vicino al Sole, con una superficie rocciosa e temperature estreme.'),
+    ('Venere', 'Il pianeta più caldo del sistema solare, con una densa atmosfera di anidride carbonica.'),
+    ('Terra', 'Il nostro pianeta, con acqua liquida, atmosfera respirabile e vita.'),
+    ('Marte', 'Il pianeta rosso con una sottile atmosfera e stagioni simili alla Terra.'),
+    ('Giove', 'Il gigante gassoso con una grande macchia rossa e numerosi satelliti.'),
+    ('Saturno', 'Con i suoi anelli spettacolari, Saturno è un pianeta unico nel sistema solare.'),
+    ('Urano', 'Un pianeta inclinato su un lato, con un colore blu-verde e venti violenti.'),
+    ('Nettuno', 'Il pianeta più lontano dal Sole, con una colorazione blu scuro e forti venti.'),
+    ('Plutone', 'Anche se non è più considerato un pianeta principale, Plutone è un mondo freddo e misterioso.'),
+    ('Teegarden''s Star b', 'Orbita attorno a Teegarden''s Star, una nana rossa. Potrebbe avere una temperatura adeguata per l''acqua liquida.'),
+    ('TOI-700 d', 'Orbita attorno a TOI-700, una nana rossa. Potrebbe avere una zona abitabile.'),
+    ('TRAPPIST-1d', 'Orbita attorno a TRAPPIST-1, una nana ultrafredda. Confermato come pianeta roccioso.'),
+    ('Proxima Centauri b', 'Orbita attorno a Proxima Centauri, la stella più vicina al Sole. Potrebbe avere una zona abitabile.'),
+    ('Kepler-442b', 'Orbita attorno a Kepler-442, una stella simile al Sole. Potrebbe avere una zona abitabile.'),
+    ('Eris', 'Un altro oggetto del sistema solare esterno, simile a Plutone ma ancora più lontano.') ;
+
+-- Inserimento delle razze
+INSERT INTO razze (nome, descrizione)
+VALUES
+    ('Umana', 'La razza dominante sulla Terra, con una vasta gamma di culture e abilità.'),
+    ('Elfica', 'Esseri aggraziati e immortali, con una forte affinità per la natura e la magia.'),
+    ('Alieno Grigio', 'Piccoli esseri con pelle grigia, grandi occhi neri e tecnologia avanzata.'),
+    ('Umbralito', 'Creature fatte di ombra, capaci di muoversi stealthily e manipolare l''oscurità.'),
+    ('Siliconiano', 'Forme di vita basate sul silicio, con corpi cristallini e comunicazione tramite vibrazioni.'),
+    ('Echoito', 'Esseri traslucidi che possono mimare altre forme e abilità.'),
+    ('Pyronito', 'Abitanti di un mondo di plasma, capaci di generare e controllare il calore.'),
+    ('Tesseratto', 'Esistono in uno stato iperdimensionale, manipolando lo spazio per viaggiare istantaneamente.'),
+    ('Techno-Organico', 'Integrano componenti organiche e tecnologiche nei loro corpi avanzati.'),
+    ('Umbranauto', 'Navigano attraverso l''echolocazione, mappando l''ambiente con impulsi sonori.') ;
+
